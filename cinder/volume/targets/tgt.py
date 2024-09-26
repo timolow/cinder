@@ -42,6 +42,8 @@ class TgtAdm(iscsi.ISCSITarget):
                     %(chap_auth)s
                     %(target_flags)s
                     write-cache %(write_cache)s
+                    scsi_sn %(scsi_sn)s
+                    scsi_id %(scsi_id)s
                 </target>
                   """)
 
@@ -142,7 +144,7 @@ class TgtAdm(iscsi.ISCSITarget):
         volume_conf = self.VOLUME_CONF % {
             'name': name, 'path': path, 'driver': driver,
             'chap_auth': chap_str, 'target_flags': target_flags,
-            'write_cache': write_cache}
+            'write_cache': write_cache, 'scsi_sn': vol_id, 'scsi_id': vol_id}
 
         LOG.debug('Creating iscsi_target for Volume ID: %s', vol_id)
         volumes_dir = self.volumes_dir
